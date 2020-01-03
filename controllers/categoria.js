@@ -150,8 +150,45 @@ var controller = {
           categorias
         });
       });
-  }
+  },
 
+  //-----------------------------------------------------------------
+   //BORRAR UN ID DETERMINADO
+   delete: (req, res) => {
+    //Tomar el string a buscar
+    var categoriaId = req.params.id;
+   // 2-COMPROBAR QUE EXISTE
+    if (!categoriaId || categoriaId == null) {
+      return res.status(404).send({
+        status: "error",
+        message: "No existe la categoría.",
+        verCategoria: categoria
+      });
+    }
+    // 3-BORRAR LA CATEGORIA
+    //db.test_users.remove( {"_id": ObjectId("4d512b45cc9374271b02ec4f")});
+    Categoria.remove ({"_id": ObjectId(categoriaId)}, (err, categoria) => {
+      //console.log(categoriaId);
+      //SI HAY ERROR O NO EXISTE EL ARTICULO
+      if (err || !categoria) {
+        
+        return res.status(404).send({
+          status: "error",
+          verCategoria: categoriaId,
+          message: "No existeEEEE la categoría."
+          
+        });
+      }
+
+      // 4-DEVOLVERLO EN JSON
+      //EL id fue encontrado
+      return res.status(200).send({
+        status: "success",
+        categoria
+      });
+    });
+   
+   } //FIN DELETE
 }; //end controller
 
 module.exports = controller;

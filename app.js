@@ -12,10 +12,12 @@ app.use(bodyParser.json());
 
 //Agrego rutas
 var categoria_routes = require ('./routes/categoria');
+var movimiento_routes = require ('./routes/movimiento');
 //var user_routes = require ('./routes/user');
 
 //Agrego prefijos de rutas
 app.use('/api/categoria',categoria_routes);
+app.use('/api/movimiento',movimiento_routes);
 //app.use('/api/user',user_routes);
 //exportar el modulo
 module.exports=app;

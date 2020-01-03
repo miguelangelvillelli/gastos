@@ -9,5 +9,6 @@ router.post('/save', CategoriaController.save);
 router.get('/list',  CategoriaController.getCategorias);
 router.get('/find/:id',CategoriaController.getCategoria);
 router.get('/search/:search',CategoriaController.search);
+router.delete('/delete/:id',CategoriaController.delete);
 
 module.exports = router;
